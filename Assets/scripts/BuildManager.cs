@@ -23,10 +23,7 @@ public class BuildManager : MonoBehaviour
         public GameObject stantdarturretprefab;
 
 
-        private void Start()
-        {
-            turrettobuild = stantdarturretprefab;
-        }
+        public GameObject missilelauncherprefab;
 
 
         private GameObject turrettobuild;
@@ -34,6 +31,11 @@ public class BuildManager : MonoBehaviour
     public GameObject gettturettobuild()
     {
         return turrettobuild;
+    }
+
+    public void setturrettobuild(GameObject turret)
+    {
+        turrettobuild = turret;
     }
 
 

@@ -1,4 +1,6 @@
 
+using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class bullet : MonoBehaviour
@@ -6,6 +8,7 @@ public class bullet : MonoBehaviour
     private Transform targett;
     public float speed = 70f;
     public GameObject bulletimpacteffect;
+    public float explosionradius = 0f;
     public void seek(Transform _target)
     {
         targett = _target; // referans yaptı aslında?
@@ -14,11 +17,11 @@ public class bullet : MonoBehaviour
     
     void Update()
     {
-       /* if (target==null)
+       if (targett==null)
         {
             Destroy(gameObject);
             return;
-        }*/
+        }
 
         Vector3 dir = targett.position - transform.position;
         float distancethisframe = speed * Time.deltaTime;
@@ -28,7 +31,7 @@ public class bullet : MonoBehaviour
             return;
         }
        transform.Translate(dir.normalized*distancethisframe,Space.World);//cokomelli
-        
+        transform.LookAt(targett);
     }
 
     void hitTarget()
@@ -36,8 +39,40 @@ public class bullet : MonoBehaviour
 
         
         GameObject effectins=(GameObject)Instantiate(bulletimpacteffect, transform.position, transform.rotation);
-        Destroy(effectins, 2f);
+        Destroy(effectins, 5f);
+        if (explosionradius>0)
+        {
+            explode();
+        }
+        else
+        {
+            Damage(targett);
+        }
         Destroy(targett.gameObject );
         Destroy(gameObject);
+    }
+
+    void explode()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionradius);
+        foreach (Collider collider in colliders)
+        {
+            if (collider.tag == "enemy")
+            {
+                Damage(collider.transform);
+            }
+        }
+    }
+    
+
+    void Damage(Transform enemy)
+    {
+        Destroy(enemy.gameObject);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position,explosionradius);
     }
 }
