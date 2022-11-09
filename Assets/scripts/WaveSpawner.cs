@@ -24,7 +24,8 @@ public class WaveSpawner : MonoBehaviour
             _countDown = timebetweenwaves;// ilk 2 saniye bitiyor sonrasında 5f likten saymaya basliyor.
         }
         _countDown -= Time.deltaTime;
-        wavecountdowntext.text = Mathf.Round(_countDown).ToString();
+        _countDown = Mathf.Clamp(_countDown, 0f, Mathf.Infinity);
+        wavecountdowntext.text = string.Format("{0:00.00}", _countDown);
     }
 
     
