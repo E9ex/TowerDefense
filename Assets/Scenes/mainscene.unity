@@ -472,7 +472,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: -279.7728}
+  m_AnchoredPosition: {x: 3, y: -167}
   m_SizeDelta: {x: -0.0001, y: -559.5458}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &48526139
@@ -16238,6 +16238,10 @@ PrefabInstance:
       propertyPath: m_text
       value: $250
       objectReference: {fileID: 0}
+    - target: {fileID: 3606991446568580313, guid: 4947e264b61e94729aaabce63d5189b2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5751209819363701186, guid: 4947e264b61e94729aaabce63d5189b2, type: 3}
       propertyPath: m_Name
       value: missilelauncher
@@ -16272,11 +16276,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6957448134655395501, guid: 4947e264b61e94729aaabce63d5189b2, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 82
+      value: 75.105
       objectReference: {fileID: 0}
     - target: {fileID: 6957448134655395501, guid: 4947e264b61e94729aaabce63d5189b2, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 74
+      value: 58.9032
       objectReference: {fileID: 0}
     - target: {fileID: 6957448134655395501, guid: 4947e264b61e94729aaabce63d5189b2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23950,11 +23954,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6957448134655395501, guid: 4947e264b61e94729aaabce63d5189b2, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 82
+      value: 75.105
       objectReference: {fileID: 0}
     - target: {fileID: 6957448134655395501, guid: 4947e264b61e94729aaabce63d5189b2, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 74
+      value: 58.9032
       objectReference: {fileID: 0}
     - target: {fileID: 6957448134655395501, guid: 4947e264b61e94729aaabce63d5189b2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24003,6 +24007,26 @@ PrefabInstance:
     - target: {fileID: 6957448134655395501, guid: 4947e264b61e94729aaabce63d5189b2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8054076221634450269, guid: 4947e264b61e94729aaabce63d5189b2, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8054076221634450269, guid: 4947e264b61e94729aaabce63d5189b2, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8054076221634450269, guid: 4947e264b61e94729aaabce63d5189b2, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8054076221634450269, guid: 4947e264b61e94729aaabce63d5189b2, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8076058920614288046, guid: 4947e264b61e94729aaabce63d5189b2, type: 3}
+      propertyPath: m_Colors.m_ColorMultiplier
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8076058920614288046, guid: 4947e264b61e94729aaabce63d5189b2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
