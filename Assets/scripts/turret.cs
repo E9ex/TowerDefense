@@ -6,10 +6,22 @@ public class turret : MonoBehaviour
     
     private Transform target;
 
-    [Header("attributes")]
+    [Header("general")]
     public float range = 15f;
+
+    [Header("use bullets(default)")]
+    public GameObject bulletPrefab;
     public float fireRate = 2f;
     private float fireCoundown = 0f;
+    
+    
+    [Header("use laser")] 
+    public bool uselaser = false;
+
+    public LineRenderer LineRenderer;
+    public ParticleSystem laserimpacteffect;
+    public Light impactlight;
+    
     
     [Header("unity setup fields")]
     public string enemyTag = "enemy";
@@ -53,24 +65,65 @@ public class turret : MonoBehaviour
     {
         if (target==null)
         {
+            if (uselaser)
+            {
+                if (LineRenderer.enabled)
+                    LineRenderer.enabled = false;
+                    laserimpacteffect.Stop();
+                    impactlight.enabled = false;
+            }
             return;
             
         }
 
-        Vector3 dir = target.position - transform.position;
-        Quaternion lookRotation=Quaternion.LookRotation(dir);
-        Vector3 rotation = Quaternion.Lerp(PartToRotate.rotation,lookRotation,Time.deltaTime*turnspeed).eulerAngles;
-        PartToRotate.rotation = Quaternion.Euler(0f,rotation.y,0f);
-        if (fireCoundown <= 0f)
-        {
-            Shoot();
-            fireCoundown = 1f/fireRate; // timucin abiye sor. saniye de 2 bullet atiyor eger fireratemizi 2 seçersek
+       lockontarget();
+       if (uselaser)
+       {
+           laser();
+       }
+       else
+       {
+           if (fireCoundown <= 0f)
+           {
+               Shoot();
+               fireCoundown = 1f/fireRate; // timucin abiye sor. saniye de 2 bullet atiyor eger fireratemizi 2 seçersek
             
+           }
+
+           fireCoundown -= Time.deltaTime;
+       }
+       
+
+
+    }
+
+    void lockontarget()
+    {
+
+
+        Vector3 dir = target.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
+        Vector3 rotation = Quaternion.Lerp(PartToRotate.rotation, lookRotation, Time.deltaTime * turnspeed).eulerAngles;
+        PartToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+    }
+
+    void laser()
+    {
+        if (!LineRenderer.enabled)
+        {
+            LineRenderer.enabled = true;
+            laserimpacteffect.Play();
+            impactlight.enabled = true;
         }
 
-        fireCoundown -= Time.deltaTime;
+   
+        LineRenderer.SetPosition(0,firepoint.position);
+        LineRenderer.SetPosition(1,target.position);
 
+        Vector3 dir = firepoint.position -target.position;
+        laserimpacteffect.transform.position = target.position+dir.normalized;
 
+        laserimpacteffect.transform.rotation = Quaternion.LookRotation(dir);
     }
 
     void Shoot()
