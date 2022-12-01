@@ -1,10 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private bool gameended = false;
+    public static bool gameended = false;
+    public GameObject gameoveruı;
+
+
+    private void Start()
+    {
+        gameended = false;
+    }
 
     // Update is called once per frame
     void Update()
@@ -12,6 +20,11 @@ public class GameManager : MonoBehaviour
         if (gameended)
         {
             return;
+        }
+
+        if (Input.GetKeyDown("e"))
+        {
+            EndGame();
         }
         if (PlayerStats.lives<=0)
         {
@@ -22,6 +35,7 @@ public class GameManager : MonoBehaviour
         {
             gameended = true;
             Debug.Log("game over.");
+            gameoveruı.SetActive(true);
             
         }
     }

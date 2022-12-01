@@ -1,21 +1,26 @@
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Enemy : MonoBehaviour
 {
+   [HideInInspector]//unityde sagda cıkmamasını sagliyor.
+
+   public float startspeed = 10f;
+  
    public float speed = 10f;
-   private Transform target;
-   public int health = 100;
-   private int wavepointIndex = 0;
-   public int value= 50;
+ 
+   public float health = 100;
+ 
+   [FormerlySerializedAs("value")] public int worth= 50;
    public GameObject deatheffect;
 
    private void Start()
    {
-      target = waypoints.points[0];
-      
+      speed = startspeed;
    }
 
-   public void TakeDamage(int amount)
+   public void TakeDamage(float amount)
    {
       health -= amount;
       if (health<=0)
@@ -24,9 +29,14 @@ public class Enemy : MonoBehaviour
       }
    }
 
+   public void Slow(float pct)
+   {
+      speed = startspeed * (1f - pct);
+   }
+
    void Die()
    {
-      PlayerStats.money += value;
+      PlayerStats.money += worth;
       GameObject effect=(GameObject)Instantiate(deatheffect, transform.position, Quaternion.identity);
       Destroy(effect,5f);
       
@@ -34,31 +44,6 @@ public class Enemy : MonoBehaviour
    }
    
 
-   public void Update()
-   {
-      Vector3 dir = target.position - transform.position;
-      transform.Translate(dir.normalized*speed*Time.deltaTime,Space.World);
-      if (Vector3.Distance(transform.position,target.position)<=0.2f)
-      {
-         GetNextwaypoint();
-      }
-   }
-
-   void GetNextwaypoint()
-   {
-     if (wavepointIndex >=waypoints.points.Length-1)
-      {
-         endpath();
-         return;
-      }
-      wavepointIndex++;
-      target = waypoints.points[wavepointIndex];
-   }
-
-   void endpath()
-   {
-      PlayerStats.lives--;
-      Destroy(gameObject);
-   }
+   
 
 }

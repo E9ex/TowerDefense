@@ -11,6 +11,10 @@ public class CameraController : MonoBehaviour
     void Update()
     
     {
+        if (GameManager.gameended)
+        {
+            this.enabled = false;
+        }
         if (Input.GetKeyDown(KeyCode.Escape))//escye basınca camera duruyor.
         {
             domovement = !domovement;

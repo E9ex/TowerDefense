@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 7704758636706685823}
   - component: {fileID: 7683191718270092664}
   m_Layer: 0
-  m_Name: Turret
+  m_Name: standartturretupgraded
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -279,9 +279,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ca59e908920445694638ea2fd6f5ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 15
+  range: 20
   bulletPrefab: {fileID: 5989228733838179585, guid: d753086c04e8c400e87c710c9778d5f2, type: 3}
-  fireRate: 1
+  fireRate: 1.5
   uselaser: 0
   damageovertime: 30
   slowpct: 0.5
